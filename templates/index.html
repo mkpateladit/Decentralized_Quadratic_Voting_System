@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold">Active Proposals</h2>
+    <div class="bg-white px-4 py-2 rounded shadow">
+        💰 Credits: <span id="credit-balance" class="font-bold">{{ credits }}</span>
+    </div>
+</div>
+
+<a href="/create" class="inline-block mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">+ New Proposal</a>
+
+{% for p in proposals %}
+<div class="bg-white p-6 rounded-lg shadow-md mb-4">
+    <h3 class="text-xl font-semibold">{{ p.title }}</h3>
+    <p class="text-gray-600 mb-2">{{ p.description }}</p>
+    <p class="text-sm text-gray-500 mb-4">Current net votes: <span class="font-bold">{{ p.total_votes }}</span></p>
+
+    <form action="/vote/{{ p.id }}" method="POST" class="flex items-center gap-4">
+        <label class="font-semibold">Your votes:</label>
+        <input type="number" name="votes" value="0" min="-20" max="20"
+               class="vote-input border p-2 rounded w-24"
+               data-proposal-id="{{ p.id }}">
+        <span class="text-sm">Cost: <span id="cost-{{ p.id }}">0</span> credits</span>
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Vote</button>
+    </form>
+</div>
+{% endfor %}
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}

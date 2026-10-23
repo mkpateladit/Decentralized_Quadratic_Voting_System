@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Connect Mock Wallet</h2>
+    <form method="POST">
+        <label class="block mb-2 font-semibold">Username / Wallet Address</label>
+        <input type="text" name="username" required class="w-full border p-2 rounded mb-4" placeholder="e.g., alice.eth">
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Connect</button>
+    </form>
+    <p class="text-sm text-gray-500 mt-4 text-center">You will receive 100 governance credits.</p>
+</div>
+{% endblock %}
